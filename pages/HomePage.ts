@@ -23,8 +23,12 @@ export class HomePage {
   async addFirstProduct(): Promise<string> {
     const firstProduct = this.productHeadings.first();
     const productName = (await firstProduct.textContent())?.trim() ?? '';
-    await this.addToCartButton(productName).click();
+    await this.addProduct(productName);
     return productName;
+  }
+
+  async addProduct(productName: string) {
+    await this.addToCartButton(productName).click();
   }
 
   async openCart() {
