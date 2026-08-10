@@ -4,7 +4,7 @@
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
-/.playwright-mcp/
+.playwright-mcp/
 
 # Environment variables
 .env
