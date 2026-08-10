@@ -30,6 +30,19 @@ const test = base.extend<
 
 test.describe.configure({ mode: 'serial' });
 
+// Re-login if the shared demo account's session was invalidated by a concurrent login elsewhere.
+async function openHomeAuthenticated(
+  loginPage: LoginPage,
+  homePage: HomePage,
+): Promise<void> {
+  await homePage.navigateTo();
+  if (await homePage.isSessionExpired()) {
+    await loginPage.navigateTo();
+    await loginPage.login(ADMIN_USERNAME, ADMIN_PASSWORD);
+    await homePage.navigateTo();
+  }
+}
+
 test.describe('Cart', () => {
   let productName: string;
 
@@ -42,8 +55,8 @@ test.describe('Cart', () => {
     await cartPage.navigateTo();
     await cartPage.clearCart();
 
-    // Step 1: Open home page
-    await homePage.navigateTo();
+    // Step 1: Open home page (re-login if the session was invalidated)
+    await openHomeAuthenticated(loginPage, homePage);
     // Step 2: Add first product
     productName = await homePage.addFirstProduct();
     // Step 3: Open cart
@@ -53,10 +66,10 @@ test.describe('Cart', () => {
   });
 
   // Question 3: Add same product twice, ensure the quantity increments correctly
-  test('Verify that the user can successfully add the same product twice and that its quantity increments correctly', async ({ homePage, cartPage }) => {
+  test('Verify that the user can successfully add the same product twice and that its quantity increments correctly', async ({ loginPage, homePage, cartPage }) => {
     // Continues the previous test's session: already logged in, product already in cart with quantity 1
     // Step 1: Add the same product again
-    await homePage.navigateTo();
+    await openHomeAuthenticated(loginPage, homePage);
     await homePage.addProduct(productName);
     // Step 2: Open cart
     await homePage.openCart();
