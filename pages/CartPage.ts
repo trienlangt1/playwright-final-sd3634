@@ -24,8 +24,11 @@ export class CartPage {
 
   // Site persists cart items per account, so tests must start from an empty cart.
   async clearCart() {
-    while (await this.removeButtons.count() > 0) {
+    let remaining = await this.removeButtons.count();
+    while (remaining > 0) {
       await this.removeButtons.first().click();
+      remaining -= 1;
+      await expect(this.removeButtons).toHaveCount(remaining);
     }
   }
 

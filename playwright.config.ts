@@ -20,13 +20,17 @@ export default defineConfig({
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  /* Retry so a transient failure against the live remote site gets one automatic re-run */
+  retries: process.env.CI ? 2 : 1,
   /* Opt out of parallel tests on CI. */
   // Tests share one live demo account/backend, so runs must not overlap.
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
+  /* Give assertions more slack against the live remote site before failing */
+  expect: {
+    timeout: 10000,
+  },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */

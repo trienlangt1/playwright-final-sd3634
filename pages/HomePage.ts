@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class HomePage {
   readonly cartButton: Locator;
@@ -20,6 +20,11 @@ export class HomePage {
       .getByRole('button', { name: /🛒/ });
   }
 
+  private async cartCount(): Promise<number> {
+    const text = (await this.cartButton.textContent()) ?? '';
+    return Number(text.match(/\d+/)?.[0] ?? 0);
+  }
+
   async addFirstProduct(): Promise<string> {
     const firstProduct = this.productHeadings.first();
     const productName = (await firstProduct.textContent())?.trim() ?? '';
@@ -28,7 +33,10 @@ export class HomePage {
   }
 
   async addProduct(productName: string) {
+    const countBefore = await this.cartCount();
     await this.addToCartButton(productName).click();
+    // Confirm the add actually registered before moving on, instead of finding out later that the cart is empty.
+    await expect(this.cartButton).toContainText(String(countBefore + 1));
   }
 
   async openCart() {
