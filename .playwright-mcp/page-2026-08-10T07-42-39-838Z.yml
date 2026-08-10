@@ -1,0 +1,13 @@
+- generic [ref=e97]:
+  - banner [ref=e98]:
+    - generic [ref=e99]:
+      - button "← Continue Shopping" [ref=e100] [cursor=pointer]
+      - generic [ref=e101]:
+        - generic [ref=e102]: 🛍️
+        - generic [ref=e103]: ShopVN
+  - main [ref=e104]:
+    - heading "Your Cart (0)" [level=1] [ref=e144]
+    - generic [ref=e106]:
+      - generic [ref=e145]: 🛒
+      - paragraph [ref=e146]: Your cart is empty
+      - button "Shop Now" [ref=e147] [cursor=pointer]

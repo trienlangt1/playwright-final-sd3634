@@ -1,0 +1,5 @@
+[    1266ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/assets/index-DyMvuCO8.js:0
+[    1269ms] [ERROR] Loading the script 'https://js.stripe.com/clover/stripe.js' violates the following Content Security Policy directive: "script-src 'self'". Note that 'script-src-elem' was not explicitly set, so 'script-src' is used as a fallback. The action has been blocked. @ https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/assets/index-DyMvuCO8.js:10
+[    1295ms] [WARNING] Error: Failed to load Stripe.js
+    at HTMLScriptElement.<anonymous> (https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/assets/index-DyMvuCO8.js:11:34980) @ https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/assets/index-DyMvuCO8.js:10
+[   10926ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/api/auth/login:0

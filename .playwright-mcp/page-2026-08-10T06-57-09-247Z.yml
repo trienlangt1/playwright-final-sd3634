@@ -1,0 +1,70 @@
+- generic [ref=e25]:
+  - banner [ref=e26]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]: 🛍️
+        - generic [ref=e30]: ShopVN
+      - generic [ref=e31]:
+        - link "👤 Hello, Admin User" [ref=e95] [cursor=pointer]:
+          - /url: /profile
+          - generic [ref=e33]: 👤
+          - generic [ref=e34]:
+            - text: Hello,
+            - strong [ref=e35]: Admin User
+        - button "⚙️ Manage Products" [ref=e96] [cursor=pointer]
+        - button "👥 Manage Users" [ref=e97] [cursor=pointer]
+        - button "📦 Orders" [ref=e98] [cursor=pointer]
+        - button "🛒" [ref=e39] [cursor=pointer]
+        - button "Logout" [ref=e99] [cursor=pointer]
+        - button "Switch to Tiếng Việt" [active] [ref=e100] [cursor=pointer]: 🇺🇸
+  - generic [ref=e43]:
+    - heading "Shop to your heart's content 🎉" [level=1] [ref=e101]
+    - paragraph [ref=e45]: Thousands of genuine products, nationwide delivery
+    - button "Explore Now" [ref=e102] [cursor=pointer]
+  - main [ref=e47]:
+    - heading "Featured Products" [level=2] [ref=e103]
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: 👕
+        - generic [ref=e55]: Mới
+        - heading "Áo thun nam" [level=3] [ref=e56]
+        - paragraph [ref=e57]: 199.000đ
+        - button "Add to Cart 🛒" [ref=e104] [cursor=pointer]
+      - generic [ref=e59]:
+        - generic [ref=e60]: 👟
+        - generic [ref=e61]: Hot
+        - heading "Giày sneaker" [level=3] [ref=e62]
+        - paragraph [ref=e63]: 599.000đ
+        - button "Add to Cart 🛒" [ref=e105] [cursor=pointer]
+      - generic [ref=e65]:
+        - generic [ref=e66]: 👜
+        - generic [ref=e67]: Sale
+        - heading "Túi xách nữ" [level=3] [ref=e68]
+        - paragraph [ref=e69]: 349.000đ
+        - button "Add to Cart 🛒" [ref=e106] [cursor=pointer]
+      - generic [ref=e71]:
+        - generic [ref=e72]: ⌚
+        - generic [ref=e73]: Mới
+        - heading "Đồng hồ thời trang" [level=3] [ref=e74]
+        - paragraph [ref=e75]: 899.000đ
+        - button "Add to Cart 🛒" [ref=e107] [cursor=pointer]
+      - generic [ref=e77]:
+        - generic [ref=e78]: 🕶️
+        - generic [ref=e79]: Hot
+        - heading "Kính mát" [level=3] [ref=e80]
+        - paragraph [ref=e81]: 249.000đ
+        - button "Add to Cart 🛒" [ref=e108] [cursor=pointer]
+      - generic [ref=e83]:
+        - generic [ref=e84]: 👖
+        - generic [ref=e85]: Sale
+        - heading "Quần jeans" [level=3] [ref=e86]
+        - paragraph [ref=e87]: 459.000đ
+        - button "Add to Cart 🛒" [ref=e109] [cursor=pointer]
+      - generic [ref=e89]:
+        - generic [ref=e90]: 🧣
+        - generic [ref=e91]: Mới
+        - heading "vvvvvv" [level=3] [ref=e92]
+        - paragraph [ref=e93]: 11.111.111đ
+        - button "Add to Cart 🛒" [ref=e110] [cursor=pointer]
+  - contentinfo [ref=e50]:
+    - paragraph [ref=e51]: © 2024 ShopVN. All rights reserved.
