@@ -8,7 +8,7 @@ export class CartPage {
   }
 
   async navigateTo() {
-    await this.page.goto('https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/cart');
+    await this.page.goto('/cart');
   }
 
   productHeading(productName: string): Locator {

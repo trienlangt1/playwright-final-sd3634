@@ -14,7 +14,7 @@ export class LoginPage {
   }
 
   async navigateTo() {
-    await this.page.goto('https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/login');
+    await this.page.goto('/login');
   }
 
   async login(username: string, password: string) {

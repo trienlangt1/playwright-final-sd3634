@@ -3,21 +3,14 @@ import { Page, Locator, expect } from '@playwright/test';
 export class HomePage {
   readonly cartButton: Locator;
   readonly productHeadings: Locator;
-  readonly sessionExpiredError: Locator;
 
   constructor(private page: Page) {
     this.cartButton = page.getByRole('button', { name: /^🛒/ });
     this.productHeadings = page.getByRole('heading', { level: 3 });
-    this.sessionExpiredError = page.getByText(/token không hợp lệ|invalid.*token/i);
   }
 
   async navigateTo() {
-    await this.page.goto('https://shopdemo-e3gwg9hqaygghmbv.canadacentral-01.azurewebsites.net/home');
-  }
-
-  // Shared demo account can be logged in elsewhere and invalidate this session's token mid-run.
-  async isSessionExpired(): Promise<boolean> {
-    return this.sessionExpiredError.isVisible().catch(() => false);
+    await this.page.goto('/home');
   }
 
   addToCartButton(productName: string): Locator {
