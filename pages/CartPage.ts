@@ -22,6 +22,13 @@ export class CartPage {
       .locator('button:has-text("−") + *');
   }
 
+  removeButton(productName: string): Locator {
+    return this.productHeading(productName)
+      .locator('..')
+      .locator('..')
+      .getByRole('button', { name: '✕' });
+  }
+
   // Site persists cart items per account, so tests must start from an empty cart.
   async clearCart() {
     let remaining = await this.removeButtons.count();
@@ -32,8 +39,22 @@ export class CartPage {
     }
   }
 
+  async removeProduct(productName: string) {
+    const countBefore = await this.removeButtons.count();
+    await this.removeButton(productName).click();
+    await expect(this.removeButtons).toHaveCount(countBefore - 1);
+  }
+
   async assertProductInCart(productName: string, expectedQuantity: string) {
     await expect(this.productHeading(productName)).toBeVisible();
     await expect(this.quantity(productName)).toHaveText(expectedQuantity);
+  }
+
+  async assertProductNotInCart(productName: string) {
+    await expect(this.productHeading(productName)).toHaveCount(0);
+  }
+
+  async assertCartEmpty() {
+    await expect(this.removeButtons).toHaveCount(0);
   }
 }

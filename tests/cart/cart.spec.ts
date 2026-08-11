@@ -39,6 +39,49 @@ test.describe('Cart', () => {
     // Step 3: Verify quantity incremented to 2 instead of creating a duplicate entry
     await cartPage.assertProductInCart(productName, '2');
   });
+
+  // Question 4a: Remove a single item from the cart
+  test('Verify that the user can successfully remove a single item from the cart', async ({ homePage, cartPage }) => {
+    // Continues the shared session: already logged in from Question 2.
+    // Setup: start from a known state — an empty cart with exactly one product.
+    await cartPage.navigateTo();
+    await cartPage.clearCart();
+    await homePage.navigateTo();
+    const singleProduct = await homePage.addFirstProduct();
+ 
+    // Step 1: Open cart and verify the product is present
+    await homePage.openCart();
+    await cartPage.assertProductInCart(singleProduct, '1');
+    // Step 2: Remove the product
+    await cartPage.removeProduct(singleProduct);
+    // Step 3: Verify the product is no longer in the cart and the cart is empty
+    await cartPage.assertProductNotInCart(singleProduct);
+    await cartPage.assertCartEmpty();
+  });
+ 
+  // Question 4b: Remove multiple items from the cart
+  test('Verify that the user can successfully remove multiple items from the cart', async ({ homePage, cartPage }) => {
+    // Continues the shared session: already logged in from Question 2.
+    // Setup: start from a known state — an empty cart with two distinct products.
+    await cartPage.navigateTo();
+    await cartPage.clearCart();
+    await homePage.navigateTo();
+    const firstProduct = await homePage.addNthProduct(0);
+    const secondProduct = await homePage.addNthProduct(1);
+ 
+    // Step 1: Open cart and verify both products are present
+    await homePage.openCart();
+    await cartPage.assertProductInCart(firstProduct, '1');
+    await cartPage.assertProductInCart(secondProduct, '1');
+    // Step 2: Remove the first product
+    await cartPage.removeProduct(firstProduct);
+    // Step 3: Verify the first product is removed while the second remains
+    await cartPage.assertProductNotInCart(firstProduct);
+    await cartPage.assertProductInCart(secondProduct, '1');
+    // Step 4: Remove the second product
+    await cartPage.removeProduct(secondProduct);
+    // Step 5: Verify the cart is now empty
+    await cartPage.assertProductNotInCart(secondProduct);
+    await cartPage.assertCartEmpty();
+  });
 });
-
-

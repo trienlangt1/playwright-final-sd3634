@@ -32,6 +32,13 @@ export class HomePage {
     return productName;
   }
 
+  async addNthProduct(index: number): Promise<string> {
+    const product = this.productHeadings.nth(index);
+    const productName = (await product.textContent())?.trim() ?? '';
+    await this.addProduct(productName);
+    return productName;
+  }
+
   async addProduct(productName: string) {
     const countBefore = await this.cartCount();
     await this.addToCartButton(productName).click();
