@@ -2,9 +2,11 @@ import { Page, Locator, expect } from '@playwright/test';
 
 export class CartPage {
   readonly removeButtons: Locator;
+  readonly checkoutButton: Locator;
 
   constructor(private page: Page) {
     this.removeButtons = page.getByRole('button', { name: '✕' });
+    this.checkoutButton = page.getByRole('button', { name: 'Thanh toán ngay' });
   }
 
   async navigateTo() {
@@ -43,6 +45,10 @@ export class CartPage {
     const countBefore = await this.removeButtons.count();
     await this.removeButton(productName).click();
     await expect(this.removeButtons).toHaveCount(countBefore - 1);
+  }
+
+  async proceedToCheckout() {
+    await this.checkoutButton.click();
   }
 
   async assertProductInCart(productName: string, expectedQuantity: string) {

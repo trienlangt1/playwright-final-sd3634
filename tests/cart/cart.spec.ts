@@ -84,4 +84,28 @@ test.describe('Cart', () => {
     await cartPage.assertProductNotInCart(secondProduct);
     await cartPage.assertCartEmpty();
   });
+
+  // Question 5: Checkout succeeds with valid receiver info (COD)
+  test('Verify that the user can successfully complete checkout with valid receiver info using COD', async ({ homePage, cartPage, checkoutPage }) => {
+    const RECEIVER_NAME = 'Trien Lang Tan';
+    const RECEIVER_PHONE = '09482948124';
+    const RECEIVER_ADDRESS = '329 Pham Van Dong street, Binh Chanh ward, Thu Duc city, Ho Chi Minh';
+
+    // Continues the shared session: already logged in from Question 2.
+    // Precondition: cart is empty after Question 4b; select one product to check out.
+    await homePage.navigateTo();
+    await homePage.addFirstProduct();
+
+    // Step 1: Open cart and proceed to checkout
+    await homePage.openCart();
+    await cartPage.proceedToCheckout();
+    // Step 2: Fill in valid receiver information
+    await checkoutPage.fillReceiverInfo(RECEIVER_NAME, RECEIVER_PHONE, RECEIVER_ADDRESS);
+    // Step 3: Select Cash on Delivery (COD) payment method
+    await checkoutPage.selectCod();
+    // Step 4: Place the order
+    await checkoutPage.placeOrder();
+    // Step 5: Verify checkout succeeded and receiver info is reflected
+    await checkoutPage.assertCheckoutSuccess(RECEIVER_NAME);
+  });
 });
