@@ -15,8 +15,7 @@ test.describe('Cart', () => {
     await homePage.navigateTo();
   });
 
-  // Question 2: Add a single product to cart
-  test('Verify that the user can successfully add a single product to cart', async ({ homePage, cartPage }) => {
+  test('Question 2: Add a single product to cart', async ({ homePage, cartPage }) => {
     // Step 1: Add the first product from the home page
     const productName = await homePage.addFirstProduct();
     // Step 2: Open the cart and verify the product quantity is 1
@@ -24,10 +23,8 @@ test.describe('Cart', () => {
     await cartPage.assertProductInCart(productName, '1');
   });
 
-  // Question 3: Add same product twice, ensure the quantity increments correctly
-  test('Verify that the user can successfully add the same product twice and that its quantity increments correctly', async ({ homePage, cartPage }) => {
+  test('Question 3: Add same product twice, ensure the quantity increments correctly', async ({ homePage, cartPage }) => {
     const productName = await homePage.addFirstProduct();
-
     // Step 1: Add the same product again from the home page
     await homePage.navigateTo();
     await homePage.addProduct(productName);
@@ -36,10 +33,8 @@ test.describe('Cart', () => {
     await cartPage.assertProductInCart(productName, '2');
   });
 
-  // Question 4a: Remove a single item from the cart
-  test('Verify that the user can successfully remove a single item from the cart', async ({ homePage, cartPage }) => {
+  test('Question 4a: Remove a single item from the cart', async ({ homePage, cartPage }) => {
     const singleProduct = await homePage.addFirstProduct();
-
     // Step 1: Open cart and verify the product is present
     await homePage.openCart();
     await cartPage.assertProductInCart(singleProduct, '1');
@@ -50,11 +45,9 @@ test.describe('Cart', () => {
     await cartPage.assertCartEmpty();
   });
 
-  // Question 4b: Remove multiple items from the cart
-  test('Verify that the user can successfully remove multiple items from the cart', async ({ homePage, cartPage }) => {
+  test('Question 4b: Remove multiple items from the cart', async ({ homePage, cartPage }) => {
     const firstProduct = await homePage.addNthProduct(0);
     const secondProduct = await homePage.addNthProduct(1);
-
     // Step 1: Open cart and verify both products are present
     await homePage.openCart();
     await cartPage.assertProductInCart(firstProduct, '1');
@@ -71,10 +64,8 @@ test.describe('Cart', () => {
     await cartPage.assertCartEmpty();
   });
 
-  // Question 5: Checkout succeeds with valid receiver info (COD)
-  test('Verify that the user can successfully complete checkout with valid receiver info using COD', async ({ homePage, cartPage, checkoutPage }) => {
+  test('Question 5: Checkout succeeds with valid receiver info (COD)', async ({ homePage, cartPage, checkoutPage }) => {
     await homePage.addFirstProduct();
-
     // Step 1: Open cart and proceed to checkout
     await homePage.openCart();
     await cartPage.proceedToCheckout();
