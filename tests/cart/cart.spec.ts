@@ -1,4 +1,4 @@
-import { test } from '../../fixtures/cart.fixture';
+import { test } from '../../fixtures/all.fixture';
 import receiverData from '../../test-data/receiverData.json';
 
 const ADMIN_USERNAME = process.env.ADMIN_LOGIN_USERNAME ?? '';

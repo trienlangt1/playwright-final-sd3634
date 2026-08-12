@@ -1,4 +1,4 @@
-import { test } from '../../fixtures/test.fixture';
+import { test } from '../../fixtures/all.fixture';
 
 test.describe('Login Page', () => {
   test('Question 1: Login fails when username/password are blank', async ({ loginPage }) => {

@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../../fixtures/api.fixture';
+import { test } from '../../fixtures/all.fixture';
 import accountData from '../../test-data/accountAPIData.json';
 
 const ADMIN_USERNAME = process.env.ADMIN_LOGIN_USERNAME ?? '';
