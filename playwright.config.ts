@@ -41,7 +41,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless: false,
     launchOptions: {
-      slowMo: 800, // 800 ms delay between actions
+      slowMo: 300, // 300 ms delay between actions
   }
 },
 
