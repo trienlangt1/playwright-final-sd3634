@@ -1,0 +1,52 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Tests run against ONE shared live account/backend (workers: 1 in playwright.config.ts).
+# Concurrent workflow runs would race on the same cart/profile state, so we serialize
+# runs on the same ref and cancel superseded ones rather than letting them collide.
+concurrency:
+  group: playwright-shopvn-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Microsoft Edge
+        run: npx playwright install --with-deps msedge
+
+      - name: Run Playwright tests
+        env:
+          CI: true
+          ADMIN_LOGIN_USERNAME: ${{ secrets.ADMIN_LOGIN_USERNAME }}
+          ADMIN_LOGIN_PASSWORD: ${{ secrets.ADMIN_LOGIN_PASSWORD }}
+          CUSTOMER_LOGIN_USERNAME: ${{ secrets.CUSTOMER_LOGIN_USERNAME }}
+          CUSTOMER_LOGIN_PASSWORD: ${{ secrets.CUSTOMER_LOGIN_PASSWORD }}
+        run: npx playwright test
+
+      - name: Upload Playwright HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 14
