@@ -39,11 +39,13 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    headless: false,
+
+    /* Run headed with slowMo locally for debugging; run headless/full-speed in CI. */
+    headless: !!process.env.CI,
     launchOptions: {
-      slowMo: 300, // 300 ms delay between actions
-  }
-},
+      slowMo: process.env.CI ? 0 : 800,
+    },
+  },
 
   /* Configure projects for major browsers */
   projects: [
