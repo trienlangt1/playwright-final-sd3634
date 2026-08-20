@@ -28,6 +28,9 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          ADMIN_LOGIN_USERNAME: ${{ secrets.ADMIN_LOGIN_USERNAME }}
+          ADMIN_LOGIN_PASSWORD: ${{ secrets.ADMIN_LOGIN_PASSWORD }}
 
       - name: Upload Playwright report
         if: always()
